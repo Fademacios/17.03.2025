@@ -4,16 +4,44 @@
     <meta charset="UTF-8">
     <title>Oblicz koszt wynajmu pokoju</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
-        input, button { padding: 10px; margin: 10px 0; }
-        #wynik { margin-top: 20px; font-size: 20px; font-weight: bold; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            text-align: center;
+        }
+        input, button { 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 5px; /* Zaokrąglenie krawędzi */
+        }
+        /* Ramka dla formularza */
+        div { 
+            border: 2px solid #4CAF50; /* Zielona ramka */
+            padding: 20px;
+            border-radius: 10px; /* Zaokrąglenie rogów */
+            width: 300px;
+            margin: 0 auto;
+        }
+        /* Ramka dla wyników */
+        #wynik { 
+            margin-top: 20px; 
+            font-size: 20px; 
+            font-weight: bold; 
+            border: 2px solid #4CAF50; /* Zielona ramka dla wyników */
+            padding: 10px;
+            border-radius: 10px;
+            width: 250px;
+            margin: 20px auto;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1>Oblicz koszt wynajmu pokoju</h1>
-    <input type="number" id="dni" placeholder="Podaj liczbę dni" min="1">
-    <button onclick="obliczKoszt()">Oblicz koszt</button>
-
+    <div>
+        <input type="number" id="dni" placeholder="Podaj liczbę dni" min="1">
+        <button onclick="obliczKoszt()">Oblicz koszt</button>
+    </div>
     <div id="wynik"></div>
 
     <script>
@@ -33,6 +61,7 @@
     </script>
 </body>
 </html>
+
 
 
 
