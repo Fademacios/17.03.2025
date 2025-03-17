@@ -2,7 +2,6 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oblicz koszt wynajmu pokoju</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
@@ -21,10 +20,13 @@
             
             let cenaZaDzien = dni === 1 ? 200 : dni <= 3 ? 180 : dni <= 7 ? 160 : 150;
             let zniżka = Math.floor(dni / 7) * 50;
-            alert("Koszt wynajmu: " + (cenaZaDzien * dni - zniżka) + " zł");
+            let suma = cenaZaDzien * dni - zniżka;
+
+            alert("Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł");
         }
     </script>
 </body>
 </html>
+
 
 
