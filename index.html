@@ -2,77 +2,48 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Oblicz koszt wynajmu pokoju</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            padding: 20px; 
-            text-align: center;
-            background-color: #f4f4f4;
-        }
-        .container {
-            margin: 0 auto;
-            width: 400px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #0000FF; /* Niebieska ramka */
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            width: 100%;
-            font-size: 16px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wynajem pokoju</title>
 </head>
 <body>
-    <h1>Oblicz koszt wynajmu pokoju</h1>
+
     <div class="container">
-        <label for="dni">Podaj liczbę dni:</label>
-        <input type="number" id="dni" placeholder="Wpisz liczbę dni" required>
-        <button onclick="rentCost(document.forms[0].dni.value)">Oblicz koszt</button>
+        <h1>Funkcje - zadania</h1>
+        <hr>
+        <h2>Wynajem pokoju</h2>
+        <p id="wynik"></p>
+        <hr>
+        <p class="footer">© Me  XXI c.</p>
     </div>
 
     <script>
-        function rentCost(days) {
-            let dni = parseFloat(days);
+        function rentCost() {
+            let days;
+            do {
+                days = parseInt(prompt("Podaj liczbę dni wynajmu:"));
+            } while (isNaN(days) || days <= 0);
 
-            if (isNaN(dni) || dni <= 0) {
-                document.write("<h2>Podaj poprawną liczbę dni.</h2>");
-                return;
-            }
-
-            let cenaZaDzien;
-            if (dni === 1) {
-                cenaZaDzien = 200;
-            } else if (dni <= 3) {
-                cenaZaDzien = 180;
-            } else if (dni <= 7) {
-                cenaZaDzien = 160;
+            let stawkadzienna;
+            if (days === 1) {
+                 stawkadzienna = 200;
+            } else if (days >= 2 && days <= 3) {
+                 stawkadzienna = 180;
+            } else if (days >= 4 && days <= 7) {
+                stawkadzienna = 160;
             } else {
-                cenaZaDzien = 150;
-            }
-
-            let zniżka = Math.floor(dni / 7) * 50;
-            let suma = cenaZaDzien * dni - zniżka;
-
-            document.write("<div style='border: 2px solid #0000FF; padding: 20px; width: 300px; text-align: center; margin: 20px auto;'>");
-            document.write("<h2>Wynik obliczeń:</h2>");
-            document.write("<p><strong>Koszt wynajmu:</strong> " + suma + " zł</p>");
-            document.write("<p><strong>Rabatu:</strong> " + zniżka + " zł</p>");
-            document.write("</div>");
+                stawkadzienna = 150;
         }
+
+            let lacznykoszt = days * stawkadzienna;
+            let znizka = Math.floor(days / 7) * 50;
+            lacznykoszt -= znizka;
+
+            document.write(`Cena za wynajem pokoju na ${days} dni wynosi: <b>${lacznykoszt} zł</b>, w tym rabat: <b>${znizka} zł</b>`);
+        }
+
+    rentCost();
     </script>
+
 </body>
 </html>
 
