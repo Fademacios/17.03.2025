@@ -10,58 +10,72 @@
             text-align: center;
             background-color: #f4f4f4;
         }
-        button { 
-            padding: 10px; 
-            margin: 10px 0; 
-            border-radius: 5px;
-        }
-        div { 
-            border: 2px solid #0000FF; /* Niebieska ramka */
+        .container {
+            margin: 0 auto;
+            width: 400px;
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
-            width: 300px;
-            margin: 0 auto;
-            background-color: #ffffff;
+            border: 2px solid #0000FF;
         }
-        #wynik { 
-            margin-top: 20px; 
-            font-size: 20px; 
-            font-weight: bold; 
-            border: 2px solid #0000FF; /* Niebieska ramka */
+        input, button {
             padding: 10px;
-            border-radius: 10px;
-            width: 250px;
-            margin: 20px auto;
-            text-align: center;
-            background-color: #ffffff;
+            margin: 10px 0;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <h1>Oblicz koszt wynajmu pokoju</h1>
-    <div>
-        <button onclick="obliczKoszt()">Oblicz koszt</button>
+    <div class="container">
+        <label for="dni">Podaj liczbę dni:</label>
+        <input type="number" id="dni" min="1" placeholder="Wpisz liczbę dni" required>
+        <button onclick="rentCost()">Oblicz koszt</button>
     </div>
-    <div id="wynik"></div>
 
     <script>
-        function obliczKoszt() {
-            // Stała wartość liczby dni
-            let dni = 5; // Przykładowa liczba dni, można zmieniać
+        function rentCost() {
+            let dni = parseInt(document.getElementById("dni").value);
 
-            let cenaZaDzien = dni === 1 ? 200 : dni <= 3 ? 180 : dni <= 7 ? 160 : 150;
+            if (isNaN(dni) || dni <= 0) {
+                document.write("<h2>Podaj poprawną liczbę dni.</h2>");
+                return;
+            }
+
+            let cenaZaDzien;
+            if (dni === 1) {
+                cenaZaDzien = 200;
+            } else if (dni <= 3) {
+                cenaZaDzien = 180;
+            } else if (dni <= 7) {
+                cenaZaDzien = 160;
+            } else {
+                cenaZaDzien = 150;
+            }
+
             let zniżka = Math.floor(dni / 7) * 50;
             let suma = cenaZaDzien * dni - zniżka;
 
-            // Zamiast zmieniać DOM, wyświetl wynik w konsoli
-            console.log("Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł");
-            
-            // Możesz także wyświetlić wynik bez manipulowania DOM:
-            alert("Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł");
+            document.write("<div style='border: 2px solid #0000FF; padding: 20px; width: 300px; text-align: center; margin: 20px auto;'>");
+            document.write("<h2>Wynik obliczeń:</h2>");
+            document.write("<p><strong>Koszt wynajmu:</strong> " + suma + " zł</p>");
+            document.write("<p><strong>Rabatu:</strong> " + zniżka + " zł</p>");
+            document.write("</div>");
         }
     </script>
 </body>
 </html>
+
 
 
 
