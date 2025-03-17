@@ -8,59 +8,61 @@
             font-family: Arial, sans-serif; 
             padding: 20px; 
             text-align: center;
+            background-color: #f4f4f4;
         }
-        input, button { 
+        button { 
             padding: 10px; 
             margin: 10px 0; 
-            border-radius: 5px; /* Zaokrąglenie krawędzi */
+            border-radius: 5px;
         }
-        /* Ramka dla formularza */
         div { 
-            border: 2px solid #4CAF50; /* Zielona ramka */
+            border: 2px solid #0000FF; /* Niebieska ramka */
             padding: 20px;
-            border-radius: 10px; /* Zaokrąglenie rogów */
+            border-radius: 10px;
             width: 300px;
             margin: 0 auto;
+            background-color: #ffffff;
         }
-        /* Ramka dla wyników */
         #wynik { 
             margin-top: 20px; 
             font-size: 20px; 
             font-weight: bold; 
-            border: 2px solid #4CAF50; /* Zielona ramka dla wyników */
+            border: 2px solid #0000FF; /* Niebieska ramka */
             padding: 10px;
             border-radius: 10px;
             width: 250px;
             margin: 20px auto;
             text-align: center;
+            background-color: #ffffff;
         }
     </style>
 </head>
 <body>
     <h1>Oblicz koszt wynajmu pokoju</h1>
     <div>
-        <input type="number" id="dni" placeholder="Podaj liczbę dni" min="1">
         <button onclick="obliczKoszt()">Oblicz koszt</button>
     </div>
     <div id="wynik"></div>
 
     <script>
         function obliczKoszt() {
-            let dni = parseInt(document.getElementById("dni").value);
-            if (isNaN(dni) || dni <= 0) {
-                document.getElementById("wynik").textContent = "Podaj poprawną liczbę dni.";
-                return;
-            }
-            
+            // Stała wartość liczby dni
+            let dni = 5; // Przykładowa liczba dni, można zmieniać
+
             let cenaZaDzien = dni === 1 ? 200 : dni <= 3 ? 180 : dni <= 7 ? 160 : 150;
             let zniżka = Math.floor(dni / 7) * 50;
             let suma = cenaZaDzien * dni - zniżka;
 
-            document.getElementById("wynik").textContent = "Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł";
+            // Zamiast zmieniać DOM, wyświetl wynik w konsoli
+            console.log("Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł");
+            
+            // Możesz także wyświetlić wynik bez manipulowania DOM:
+            alert("Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł");
         }
     </script>
 </body>
 </html>
+
 
 
 
