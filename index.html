@@ -16,7 +16,7 @@
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
-            border: 2px solid #0000FF; /* Niebieska ramka */
+            border: 2px solid #0000FF;
         }
         input, button {
             padding: 10px;
@@ -44,17 +44,8 @@
     </div>
 
     <script>
-        function rentCost() {
-            // Pobieranie liczby dni z formularza bez używania getElementById
-            let dni = parseFloat(document.forms[0].dni.value);
-
-            if (isNaN(dni) || dni <= 0) {
-                document.write("<h2>Podaj poprawną liczbę dni.</h2>");
-                return;
-            }
-
-            // Obliczanie ceny w zależności od liczby dni
-            let cenaZaDzien;
+        function rentCost(days) {
+            
             if (dni === 1) {
                 cenaZaDzien = 200;
             } else if (dni <= 3) {
@@ -65,11 +56,9 @@
                 cenaZaDzien = 150;
             }
 
-            // Obliczanie zniżki za pełne tygodnie
             let zniżka = Math.floor(dni / 7) * 50;
             let suma = cenaZaDzien * dni - zniżka;
-
-            // Wyświetlanie wyniku za pomocą document.write
+            
             document.write("<div style='border: 2px solid #0000FF; padding: 20px; width: 300px; text-align: center; margin: 20px auto;'>");
             document.write("<h2>Wynik obliczeń:</h2>");
             document.write("<p><strong>Koszt wynajmu:</strong> " + suma + " zł</p>");
