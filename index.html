@@ -6,6 +6,7 @@
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
         input, button { padding: 10px; margin: 10px 0; }
+        #wynik { margin-top: 20px; font-size: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -13,20 +14,26 @@
     <input type="number" id="dni" placeholder="Podaj liczbę dni" min="1">
     <button onclick="obliczKoszt()">Oblicz koszt</button>
 
+    <div id="wynik"></div>
+
     <script>
         function obliczKoszt() {
             let dni = parseInt(document.getElementById("dni").value);
-            if (isNaN(dni) || dni <= 0) return alert("Podaj poprawną liczbę dni.");
+            if (isNaN(dni) || dni <= 0) {
+                document.getElementById("wynik").textContent = "Podaj poprawną liczbę dni.";
+                return;
+            }
             
             let cenaZaDzien = dni === 1 ? 200 : dni <= 3 ? 180 : dni <= 7 ? 160 : 150;
             let zniżka = Math.floor(dni / 7) * 50;
             let suma = cenaZaDzien * dni - zniżka;
 
-            alert("Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł");
+            document.getElementById("wynik").textContent = "Koszt wynajmu: " + suma + " zł\nRabatu: " + zniżka + " zł";
         }
     </script>
 </body>
 </html>
+
 
 
 
