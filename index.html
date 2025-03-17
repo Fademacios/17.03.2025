@@ -5,93 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oblicz koszt wynajmu pokoju</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f4f4f9;
-        }
-        h1 {
-            text-align: center;
-        }
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        input, button { padding: 10px; margin: 10px 0; }
     </style>
 </head>
 <body>
-
     <h1>Oblicz koszt wynajmu pokoju</h1>
-
-    <div class="container">
-        <label for="dni">Podaj liczbę dni wynajmu:</label>
-        <input type="number" id="dni" placeholder="Wpisz liczbę dni" min="1">
-        <button onclick="obliczKoszt()">Oblicz koszt</button>
-    </div>
+    <input type="number" id="dni" placeholder="Podaj liczbę dni" min="1">
+    <button onclick="obliczKoszt()">Oblicz koszt</button>
 
     <script>
-        function kosztWynajmu(dni) {
-            let cenaZaDzien;
-
-            // Określanie ceny za dzień w zależności od liczby dni wynajmu
-            if (dni === 1) {
-                cenaZaDzien = 200;
-            } else if (dni >= 2 && dni <= 3) {
-                cenaZaDzien = 180;
-            } else if (dni >= 4 && dni <= 7) {
-                cenaZaDzien = 160;
-            } else {
-                cenaZaDzien = 150;
-            }
-
-            // Wyliczanie podstawowego kosztu
-            let calkowityKoszt = cenaZaDzien * dni;
-
-            // Liczenie zniżki za pełne tygodnie
-            let tygodnie = Math.floor(dni / 7); // Zaokrąglanie liczby tygodni w dół
-            let znizka = tygodnie * 50; // Zniżka 50zł za każdy pełny tydzień
-
-            // Odejmowanie zniżki od całkowitego kosztu
-            calkowityKoszt -= znizka;
-
-            return calkowityKoszt;
-        }
-
         function obliczKoszt() {
-            const dni = parseInt(document.getElementById("dni").value);
-
-            if (isNaN(dni) || dni <= 0) {
-                alert("Proszę podać poprawną liczbę dni.");
-            } else {
-                const calkowityKoszt = kosztWynajmu(dni);
-                alert("Całkowity koszt wynajmu: " + calkowityKoszt + " zł");
-            }
+            let dni = parseInt(document.getElementById("dni").value);
+            if (isNaN(dni) || dni <= 0) return alert("Podaj poprawną liczbę dni.");
+            
+            let cenaZaDzien = dni === 1 ? 200 : dni <= 3 ? 180 : dni <= 7 ? 160 : 150;
+            let zniżka = Math.floor(dni / 7) * 50;
+            alert("Koszt wynajmu: " + (cenaZaDzien * dni - zniżka) + " zł");
         }
     </script>
-
 </body>
 </html>
+
 
